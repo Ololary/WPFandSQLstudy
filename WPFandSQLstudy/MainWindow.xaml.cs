@@ -54,5 +54,38 @@ namespace WPFandSQLstudy
             text.FontFamily = new FontFamily("Verdana");
             timesNewRomanFont.IsChecked = false;
         }
+
+        private void changeFontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string fontSize = changeFontSize.SelectedItem.ToString();
+            fontSize = fontSize.Substring(fontSize.Length - 2);
+            switch (fontSize)
+            {
+                case "10":
+                    text.FontSize = 10;
+                    break;
+                case "14":
+                    text.FontSize = 14;
+                    break;
+                case "16":
+                    text.FontSize = 16;
+                    break;
+                case "20":
+                    text.FontSize = 20;
+                    break;
+                case "24":
+                    text.FontSize = 24;
+                    break;
+                case "32":
+                    text.FontSize = 32;
+                    break;
+                case "48":
+                    text.FontSize = 48;
+                    break;
+
+
+
+            }
+        }
     }
 }
