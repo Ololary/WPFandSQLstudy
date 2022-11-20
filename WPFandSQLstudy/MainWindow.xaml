@@ -10,12 +10,15 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem x:Name="menuFile" Header="Файл" Height="25" Width="58">
-                <MenuItem x:Name="createNewFile" Header="Создать новый файл">
+                <MenuItem x:Name="createNewFile" Header="Создать новый файл" Click="createNewFile_Click">
                     <MenuItem.Icon >
                         <Image Source="./Resourses/open_file.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="openFile" Header="Открыть новый файл" Click="openFile_Click">
+                <MenuItem x:Name="openFile" Header="Открыть файл" Click="openFile_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Resourses/search.ico"/>
+                    </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem x:Name="saveFile" Header="Сохранить файл" Click="saveFile_Click">
                     <MenuItem.Icon >

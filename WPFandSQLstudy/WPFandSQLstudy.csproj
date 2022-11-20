@@ -111,5 +111,8 @@
   <ItemGroup>
     <Resource Include="Resourses\paste.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\search.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

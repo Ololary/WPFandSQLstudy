@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,21 +22,60 @@ namespace WPFandSQLstudy
     /// </summary>
     public partial class MainWindow : Window
     {
+        private void SaveFile()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.ShowDialog();
+            bool? res = sfd.ShowDialog();
+
+            if (res!=false)
+            {
+                using (Stream s = File.Open(sfd.FileName, FileMode.OpenOrCreate))
+                {
+                    using (StreamWriter sw = new StreamWriter(s))
+                    {
+                        sw.Write(text.Text);
+                    }
+                }
+            }
+           
+        }
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        private void createNewFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (text.Text!="")
+            {
+                SaveFile();
+            }
+            text.Text = "";
+        }
         private void openFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
+
+            bool? res = ofd.ShowDialog();
+            if (res !=false)
+            {
+                Stream myStream;
+                if ((myStream = ofd.OpenFile()) != null)
+                {
+                    string file_name = ofd.FileName;
+                    string file_text = File.ReadAllText(file_name);
+                    text.Text = file_text;
+                }
+            }
+            
+
+            
         }
 
         private void saveFile_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.ShowDialog();
+            SaveFile();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
@@ -87,5 +127,7 @@ namespace WPFandSQLstudy
 
             }
         }
+
+       
     }
 }
