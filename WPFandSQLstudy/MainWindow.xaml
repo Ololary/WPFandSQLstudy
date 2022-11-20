@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFandSQLstudy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Редактор" Height="450" Width="800" ResizeMode="NoResize" Topmost="False" WindowState="Normal" Icon=".\Resourses\icon.ico"
+        >
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem x:Name="menuFile" Header="Файл" Height="25" Width="58">
+                <MenuItem x:Name="createNewFile" Header="Создать новый файл">
+                    <MenuItem.Icon >
+                        <Image Source="./Resourses/open_file.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="openFile" Header="Открыть новый файл" Click="openFile_Click">
+                </MenuItem>
+                <MenuItem x:Name="saveFile" Header="Сохранить файл" Click="saveFile_Click">
+                    <MenuItem.Icon >
+                        <Image Source="./Resourses/save_file.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="exit" Header="Выйти" Click="exit_Click">
+                    <MenuItem.Icon >
+                        <Image Source="./Resourses/exit.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="menuEdit" Header="Редактировать" Height="25" Width="100">
+                <MenuItem x:Name="selectFont" Header="Шрифт">
+                    <MenuItem x:Name="timesNewRomanFont" Header="Times New Roman" IsCheckable="True"
+                              StaysOpenOnClick="True" Click="timesNewRoman_Click">
+                    </MenuItem>
+                    <MenuItem x:Name="verdanaFont" Header="Verdana" IsCheckable="True"
+                              StaysOpenOnClick="True" Click="verdanaFont_Click">
+                    </MenuItem>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="copyText" Header="Скопировать"
+                          Command="ApplicationCommands.Copy">
+                </MenuItem>
+                <MenuItem x:Name="pasteText" Header="Вставить"
+                          Command="ApplicationCommands.Paste">
+                </MenuItem>
+                <MenuItem x:Name="cutText" Header="Вырезать"
+                          Command="ApplicationCommands.Cut">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="text" Margin="0,42,0,10" Width="770"    >
+            
+        </TextBox>
+    </DockPanel>
 </Window>

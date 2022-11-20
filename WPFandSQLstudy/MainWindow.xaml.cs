@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,35 @@ namespace WPFandSQLstudy
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void openFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+        }
+
+        private void saveFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.ShowDialog();
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void timesNewRoman_Click(object sender, RoutedEventArgs e)
+        {
+            text.FontFamily = new FontFamily("Times New Roman");
+            verdanaFont.IsChecked = false;
+        }
+
+        private void verdanaFont_Click(object sender, RoutedEventArgs e)
+        {
+            text.FontFamily = new FontFamily("Verdana");
+            timesNewRomanFont.IsChecked = false;
         }
     }
 }
