@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFandSQLstudy"
         mc:Ignorable="d"
-        Title="Редактор" Height="450" Width="800" ResizeMode="NoResize" Topmost="False" WindowState="Normal" Icon=".\Resourses\icon.ico"
+        Title="Моя программа" Height="450" Width="800" ResizeMode="NoResize" Topmost="False" WindowState="Normal" Icon=".\Resourses\icon.ico"
         >
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -85,8 +85,21 @@
                 </ComboBox>
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="text" Margin="0,42,0,10" Width="770" FontSize="14"    >
+        <TabControl Height="361.6" Width="792" Margin="0,-0.4,0,0">
+            <TabItem Header="Регистрация">
+                <Grid Background="#1D4F69">
+                    <Label Content="Регистрация" Foreground="#26DEC8" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="258,61,260.4,0" FontSize="36" Width="268" Height="56" FontFamily="Segoe UI Black"/>
+                    <Button x:Name="regButton" Background="#4D90A8" Content="Зарегистрироваться" Foreground="White" HorizontalAlignment="Center" Width="200" Margin="293,260,293.4,37.6" FontWeight="Bold" FontSize="16" />
+                    <TextBox x:Name="loginField" Foreground="White" Background="#4D90A8" HorizontalAlignment="Center"  Width="300" Height="30" FontSize="22"/>
+                    <TextBox x:Name="passwordField" Foreground="White" Background="#4D90A8" HorizontalAlignment="Center"  Height="30" Width="300" Margin="243,212,243.4,91.6" FontSize="22"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Редактор">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="text"  FontSize="14"    />
+                </Grid>
+            </TabItem>
+        </TabControl>
 
-        </TextBox>
     </DockPanel>
 </Window>
