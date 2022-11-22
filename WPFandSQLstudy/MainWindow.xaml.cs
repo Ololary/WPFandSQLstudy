@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -128,6 +130,49 @@ namespace WPFandSQLstudy
             }
         }
 
-       
+        private void regButton_Click(object sender, RoutedEventArgs e)
+        {
+            string connectString = ConfigurationManager.AppSettings["connectionString"];
+
+            SqlConnection sql = new SqlConnection(connectString);
+            try
+            {
+                if (sql.State==System.Data.ConnectionState.Closed)
+                {
+                    sql.Open();
+
+                    string query = "SELECT COUNT(1) FROM Users WHERE login=@login AND password=@password";
+                    SqlCommand sqlCmd = new SqlCommand(query, sql);
+                    sqlCmd.CommandType = System.Data.CommandType.Text;
+                    sqlCmd.Parameters.Add("@login", loginField.Text);
+                    sqlCmd.Parameters.Add("@password", passwordField.Password);
+
+                    int countUser = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                    if (countUser==0)
+                    {
+                        query = "INSERT INTO Users(login,password) VALUES (@login,@password)";
+                        SqlCommand Cmd = new SqlCommand(query, sql);
+                        Cmd.CommandType = System.Data.CommandType.Text;
+                        Cmd.Parameters.Add("@login", loginField.Text);
+                        Cmd.Parameters.Add("@password", passwordField.Password);
+                        Cmd.ExecuteNonQuery();
+                        MessageBox.Show("Вы добавлены в базу данных!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Авторизация прошла успешно!");
+                        SucessPage sucess = new SucessPage();
+                        sucess.Show();
+                        App.Current.MainWindow.Hide();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                
+            }finally { sql.Close(); }
+        }
     }
 }
